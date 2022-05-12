@@ -9650,6 +9650,7 @@ html.ie:not(.edge) .checkbox-group label .check {
 }
 .mainSlider {
     height: 774px;
+    /* background-image: url('../images/mainslide-02.jpg'); */
 }
 .mainSlider .container {
     position: relative;
@@ -16870,3 +16871,4 @@ form {
 .f-social li a:hover {
     color: #f47629;
 }
+.tt-breadcrumb{background-image: url('../images/breadcrumb_bg.jpg')}

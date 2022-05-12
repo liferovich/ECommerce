@@ -1,4 +1,5 @@
 import { sequelize } from './database.state';
+import './models/index';
 // import {
 //   User
 // } from './models/index';

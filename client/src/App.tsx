@@ -10,10 +10,8 @@ function App() {
   return (
     <Router>
       <Header />
-      <main>
-        <div className='container'>
+      <main  id="tt-pageContent">
           {routes}
-        </div>
       </main>
       <Footer />
     </Router>
