@@ -8,6 +8,7 @@ export const sequelize = new Sequelize(
   'qwerty' as string,
   {
     host: 'localhost',
-    dialect: 'postgres'
+    dialect: 'postgres',
+    port: 5433
   }
 )
