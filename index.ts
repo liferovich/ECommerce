@@ -4,7 +4,6 @@ import cookieParser from 'cookie-parser';
 import { router } from './routes/index';
 import { initDatabase } from './database/initDatabase';
 
-// import initSockets from './sockets';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -22,8 +21,6 @@ app.use(
   })
 );
 app.use('/api', router);
-
-// initSockets();
 
 app.listen(PORT, async () => {
   console.log(`Server started on PORT = ${PORT}`);

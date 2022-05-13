@@ -127,3 +127,13 @@ table.cart-table .tt-list-top {
         position: relative;
     }
 }
+.order {
+    margin-top: 4rem;
+}
+.form-default textarea.form-control {
+    padding-top: 13px;
+    height: 8rem;
+}
+#payments, #deliveries {
+    margin: 2rem 0;
+}

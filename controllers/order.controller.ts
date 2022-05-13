@@ -5,7 +5,7 @@ class OrderController {
 
     async addOrder(req: express.Request, res: express.Response) {
         try {
-            const order = req.body;
+            const order = req.body.order;
             const newOrder = await orderService.addOrder(order);
 
             return res.json(newOrder);

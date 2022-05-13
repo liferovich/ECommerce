@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { Order } from '../models/response/OrderResponse';
 import { Product } from '../models/response/ProductResponse';
+import OrderService from '../services/OrderService';
 import ProductService from '../services/ProductService';
 
 const initialState = {
@@ -27,12 +29,28 @@ export const getProducts = createAsyncThunk(
   }
 );
 
+export const addOrder = createAsyncThunk(
+  'app/addorder',
+  async (data: Order,
+    { rejectWithValue }) => {
+    setLoading(true);
+    try {
+      const response = await OrderService.addOrder(data);
+
+      return response.data;
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+);
+
 const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
     addCart: (state, action) => {
-      // console.log(action.payload);
       const index = state.cart.findIndex(x => x.id == action.payload.id);
       if (index == -1) {
         state.cart = [...state.cart, action.payload];
@@ -45,7 +63,6 @@ const appSlice = createSlice({
       state.cart.splice(index, 1);
     },
     addWishList: (state, action) => {
-      // console.log(action.payload);
       const index = state.wishlist.findIndex(x => x.id == action.payload.id);
       if (index == -1) {
         state.wishlist = [...state.wishlist, action.payload];
@@ -71,11 +88,16 @@ const appSlice = createSlice({
     builder.addCase(getProducts.rejected, (state, action) => {
       console.log(action.payload);
     });
+    builder.addCase(addOrder.fulfilled, (state, action) => {
+      state.cart = [];
+    });
+    builder.addCase(addOrder.rejected, (state, action) => {
+      console.log(action.payload);
+    });
   },
 });
 
 export const { setLoading, getProduct, addCart, addWishList, deleteCart } = appSlice.actions;
-// export const chats = (state: any) => state.chats.chats;
 export const cartLength = (state: any) => state.app.cart.length;
 export const wishlistLength = (state: any) => state.app.wishlist.length;
 export const cart = (state: any) => state.app.cart;

@@ -1,6 +1,7 @@
 import { sequelize } from '../database.state';
-import pkg from 'sequelize';
+import pkg, { INTEGER } from 'sequelize';
 const { DataTypes } = pkg;
+
 
 const Order = sequelize.define('Order', {
     id: {
@@ -9,25 +10,46 @@ const Order = sequelize.define('Order', {
         primaryKey: true,
         autoIncrement: true,
     },
+    products: {
+        type: DataTypes.ARRAY(INTEGER),
+        defaultValue: []
+    },
+    total: {
+        type: DataTypes.INTEGER,
+    },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
     },
-    name: {
+    receiver: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    address: {
+    phone: {
         type: DataTypes.STRING,
     },
-    comments: {
+    comment: {
         type: DataTypes.STRING,
     },
-    article: {
+    index: {
         type: DataTypes.STRING,
     },
-    color: {
+    city: {
+        type: DataTypes.STRING,
+    },
+    street: {
+        type: DataTypes.STRING,
+    },
+    build: {
+        type: DataTypes.STRING,
+    },
+    flat: {
+        type: DataTypes.STRING,
+    },
+    payment: {
+        type: DataTypes.STRING,
+    },
+    delivery: {
         type: DataTypes.STRING,
     },
 
