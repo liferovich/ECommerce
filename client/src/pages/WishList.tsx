@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import ProductItem from '../components/ProductItem'
+import WishlistItem from '../components/WishlistItem'
 import { wishlist } from '../features/AppSlice'
 import { Product } from '../models/response/ProductResponse'
 
@@ -21,7 +21,7 @@ const WishList = () => {
             </div>
             <div className='section-indent'>
                 <div className='container container-lg-fluid'>
-                    {wishListProducts.map((product: Product) => <ProductItem product={product} key={product.id} />)}
+                    {wishListProducts.map((product: Product) => <WishlistItem product={product} key={product.id} />)}
 
                 </div>
             </div>

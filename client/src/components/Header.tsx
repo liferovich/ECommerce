@@ -53,12 +53,16 @@ export const Header = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="tt-obj tt-obj-cart js-dropdown-cart"><a href="#" className="tt-obj__btn"><i
-                                className="icon-808584"></i>
-                                <div className="tt-obj__badge">2</div>
-                            </a>
-                                <div className="tt-obj__dropdown"></div>
+                            <div className="tt-obj tt-obj-cart js-dropdown-cart">
+                                <NavLink to="/wishlist" className="tt-obj__btn">
+                                    <i className="tt-icon  icon-favorite"></i>
+                                </NavLink>
+                                <NavLink to="/cart" className="tt-obj__btn"><i
+                                    className="icon-808584"></i>
+                                    <div className="tt-obj__badge">{productCartLength}</div>
+                                </NavLink>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -99,9 +103,21 @@ export const Header = () => {
                                                     <div className="mask"><span>Каталог</span></div>
                                                 </div>
                                             </NavLink>
-                                            {/* <ul>
-                                                <li><NavLink to="/catalog">Светодиодные ленты</NavLink></li>
-                                            </ul> */}
+                                            <ul>
+                                                <li>
+                                                    <NavLink to='/catalog/neon'>Гибкий неон</NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink to='/catalog/string'>
+                                                        Табло бегущая строка
+                                                    </NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink to='/catalog/led'>
+                                                        Декоративное Освещение
+                                                    </NavLink>
+                                                </li>
+                                            </ul>
                                         </li>
                                         <li><a href="about.html">
                                             <div className="electric-btn"><span className="text">About Us</span>

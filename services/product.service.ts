@@ -1,6 +1,7 @@
 import { sequelize } from '../database/database.state';
 
 type ProductType = {
+    category: string,
     name: string,
     description: string,
     price: string,

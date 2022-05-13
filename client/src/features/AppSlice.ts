@@ -33,32 +33,32 @@ const appSlice = createSlice({
   reducers: {
     addCart: (state, action) => {
       // console.log(action.payload);
-      const index = state.cart.findIndex(x => x.id == action.payload.id);
-      if (index == -1) {
+      const index = state.cart.findIndex(x => x.id === action.payload.id);
+      if (index === -1) {
         state.cart = [...state.cart, action.payload];
       } else {
         state.cart.splice(index, 1);
       }
     },
     deleteCart: (state, action) => {
-      const index = state.cart.findIndex(x => x.id == action.payload.id);
+      const index = state.cart.findIndex(x => x.id === action.payload.id);
       state.cart.splice(index, 1);
     },
     addWishList: (state, action) => {
       // console.log(action.payload);
-      const index = state.wishlist.findIndex(x => x.id == action.payload.id);
-      if (index == -1) {
+      const index = state.wishlist.findIndex(x => x.id === action.payload.id);
+      if (index === -1) {
         state.wishlist = [...state.wishlist, action.payload];
       } else {
         state.wishlist.splice(index, 1);
       }
     },
     deleteWishlist: (state, action) => {
-      const index = state.wishlist.findIndex(x => x.id == action.payload.id);
+      const index = state.wishlist.findIndex(x => x.id === action.payload.id);
       state.wishlist.splice(index, 1);
     },
     getProduct: (state, action) => {
-      state.product = state.products.find(x => x.id == action.payload) || {} as Product;
+      state.product = state.products.find(x => x.id === action.payload) || {} as Product;
     },
     setLoading: (state, action) => {
       state.isLoading = action.payload;
@@ -82,4 +82,8 @@ export const wishlist = (state: any) => state.app.wishlist;
 export const product = (state: any) => state.app.product;
 export const products = (state: any) => state.app.products;
 export const isLoading = (state: any) => state.chats.isLoading;
+export const orderCost = (state: any) => state.app.cart.reduce((previousValue: number, product: Product) => {
+  return previousValue + product.price;
+}, 0);
+
 export default appSlice.reducer;

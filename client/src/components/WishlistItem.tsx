@@ -9,7 +9,7 @@ import {
 } from '../features/AppSlice'
 import { useEffect, useState } from "react";
 
-const ProductItem = ({ product }: { product: Product }) => {
+const WishlistItem = ({ product }: { product: Product }) => {
     const [isInCart, setIsInCart] = useState(false);
     const [isInFav, setIsInFav] = useState(false);
     const appWishlist = useSelector(wishlist);
@@ -62,4 +62,4 @@ const ProductItem = ({ product }: { product: Product }) => {
         </div></>)
 }
 
-export default ProductItem;
+export default WishlistItem;

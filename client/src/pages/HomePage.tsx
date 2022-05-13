@@ -12,9 +12,9 @@ import category3 from '../assets/img/slideinfo-03.jpg';
 const HomePage = () => {
     return (<>
         <div className="container-indent no-margin mainSlider-wrapper">
-            <div id="js-mainSlider" className="mainSlider" >
-                <div className="slide">
-                    <div className="img--holder" data-bgslide={slide1}></div>
+            <Carousel className="mainSlider" infiniteLoop useKeyboardArrows autoPlay showArrows={false} showStatus={false} showIndicators={false} showThumbs={false}>
+                <div>
+                    <img src={slide1} className="img--holder"/>
                     <div className="slide-content">
                         <div className="container text-center js-rotation" data-animation="fadeInUpSm"
                             data-animation-delay="0s">
@@ -23,8 +23,8 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="slide">
-                    <div className="img--holder" data-bgslide={slide2}></div>
+                <div>
+                    <img src={slide2} className="img--holder"/>
                     <div className="slide-content">
                         <div className="container text-center js-rotation" data-animation="fadeInUpSm"
                             data-animation-delay="0s">
@@ -33,8 +33,8 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="slide">
-                    <div className="img--holder" data-bgslide={slide3}></div>
+                <div>
+                    <img src={slide3} className="img--holder"/>
                     <div className="slide-content">
                         <div className="container text-center js-rotation" data-animation="fadeInUpSm"
                             data-animation-delay="0s">
@@ -43,7 +43,7 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Carousel>
         </div>
         <div className="section-indent">
             <div className="container container-lg-fluid">
@@ -89,7 +89,7 @@ const HomePage = () => {
                     </div>
                     <div className="tt-item__content">
                         <div className="tt-item__title"><span
-                                className="tt-text">Светодиодные модули</span></div>
+                            className="tt-text">Светодиодные модули</span></div>
                         <div className="tt-item__description">Светодиодные модули  – это специальные осветительные приборы, представляющие собой цельные конструкции, которые оснащены различными типами светодиодов – SMD 3528, SMD 5050, SMD 5630. Устройства могут иметь открытый корпус с функцией влагозащиты или без нее, а также изолированную герметичную оболочку.</div>
                         <div className="tt-item__btn"><a href="#">+</a></div>
                     </div>
@@ -101,7 +101,7 @@ const HomePage = () => {
                     </div>
                     <div className="tt-item__content">
                         <div className="tt-item__title"><span
-                                className="tt-text">Декоративное освещение</span></div>
+                            className="tt-text">Декоративное освещение</span></div>
                         <div className="tt-item__description">Декоративное освещение – является эффективным способом создать непередаваемую атмосферу, подчеркнуть достоинства и скрыть недостатки в интерьере или экстерьере. Магазин Светомир, предлагает Вам светодиодные акриловые фигуры, гирлянды “Бахрома” и “Дождь”, гибкий неон (Led-neon) и многое другое.</div>
                         <div className="tt-item__btn"><a href="#">+</a></div>
                     </div>
@@ -113,7 +113,7 @@ const HomePage = () => {
                     </div>
                     <div className="tt-item__content">
                         <div className="tt-item__title"><span
-                                className="tt-text">Светодиодные ленты</span></div>
+                            className="tt-text">Светодиодные ленты</span></div>
                         <div className="tt-item__description">Светодиодные ленты являются экономичным источником точечного света, способные давать потрясающий яркий свет. Освещение на основе светодиодных лент используется для контурного освещения, в ночных клубах, ресторанах, в подсветке автомобиля, в интерьере и светодизайне.</div>
                         <div className="tt-item__btn"><a href="#">+</a></div>
                     </div>

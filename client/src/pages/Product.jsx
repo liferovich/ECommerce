@@ -1,25 +1,37 @@
 import { useParams, NavLink } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   product,
   getProduct,
   getProducts,
   addCart,
-  addWishList
+  addWishList,
+  wishlist,
+  cart
 } from '../features/AppSlice'
 
 const Product = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
   const appProduct = useSelector(product)
+  const [isInCart, setIsInCart] = useState(false)
+  const [isInFav, setIsInFav] = useState(false)
+  const appWishlist = useSelector(wishlist)
+  const appCart = useSelector(cart)
 
   const addToCartProduct = () => {
-    if (appProduct.id) dispatch(addCart(appProduct))
+    if (appProduct.id) {
+      setIsInCart(!isInCart)
+      dispatch(addCart(appProduct))
+    }
   }
 
   const addToWishListProduct = () => {
-    if (appProduct.id) dispatch(addWishList(appProduct))
+    if (appProduct.id) {
+      setIsInFav(!isInFav)
+      dispatch(addWishList(appProduct))
+    }
   }
 
   useEffect(() => {
@@ -29,6 +41,16 @@ const Product = () => {
   useEffect(() => {
     dispatch(getProduct(id))
   }, [id])
+
+  useEffect(() => {
+    const index = appCart.findIndex(x => x.id == product.id)
+    if (index !== -1) setIsInCart(true)
+  }, [appCart])
+
+  useEffect(() => {
+    const index = appWishlist.findIndex(x => x.id == product.id)
+    if (index !== -1) setIsInFav(true)
+  }, [appWishlist])
 
   return (
     <>
@@ -53,8 +75,7 @@ const Product = () => {
                 <div>
                   <img
                     className='zoom-product'
-                    src={appProduct?.image}
-                    data-zoom-image='images/product/product-10.jpg'
+                    src={'../' + appProduct?.image}
                     alt=''
                   />
                 </div>
@@ -72,37 +93,24 @@ const Product = () => {
                   </ul>
                 </div>
                 <div className='tt-price'>{appProduct?.price} руб.</div>
-                <div className='tt-data'>
-                  <div className='tt-item'>
-                    <div className='tt-rating'>
-                      <i className='icon-favorite'></i>{' '}
-                      <i className='icon-favorite'></i>
-                      <i className='icon-favorite'></i>{' '}
-                      <i className='icon-favorite'></i>{' '}
-                      <i className='icon-favorite'></i>
-                    </div>
-                  </div>
-                  <div className='tt-item'>
-                    <a className='tt-link-simple' href='#'>
-                      2 customer reviews
-                    </a>
-                  </div>
-                </div>
                 <div className='tt-description'>{appProduct?.description}</div>
                 <div className='tt-row'>
                   <div className='tt-col'>
-                    <div className='tt-input-counter style-01'>
-                      <span className='minus-btn'>-</span>{' '}
-                      <input type='text' value='1' />{' '}
-                      <span className='plus-btn'>+</span>
-                    </div>
+                    <button
+                      className='tt-btn tt-btn__wide btn__color01 tt-input-counter'
+                      onClick={addToWishListProduct}
+                    >
+                      <span className='icon-favorite'></span>
+                      {isInFav ? 'Удалить' : 'В избранное'}
+                    </button>
                   </div>
                   <div className='tt-col'>
                     <button
                       className='tt-btn tt-btn__wide btn__color01'
                       onClick={addToCartProduct}
                     >
-                      <span className='icon-808584'></span>Добавить в корзину
+                      <span className='icon-808584'></span>
+                      {isInCart ? 'Удалить из корзины' : 'Добавить в корзину'}
                     </button>
                   </div>
                 </div>

@@ -14181,6 +14181,9 @@ body.no-scroll {
     color: #303442;
     -webkit-transition: color 0.2s;
     transition: color 0.2s;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 .tt-product .tt-btn-addtocart .tt-icon {
     color: #f47629;

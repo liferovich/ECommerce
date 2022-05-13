@@ -1,5 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Cart from '../pages/Cart';
+import CategoryNeon from '../pages/categories/CategoryNeon';
+// import CategoryString from '../pages/categories/CategoryString';
 import Catalog from '../pages/Catalog';
 import HomePage from '../pages/HomePage';
 import Product from '../pages/Product';
@@ -10,6 +12,8 @@ export function useRoutes() {
         <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/catalog' element={<Catalog />} />
+            <Route path='/catalog/neon' element={<CategoryNeon />} />
+            {/* <Route path='/catalog/string' element={<CategoryString />} /> */}
             <Route path='/product/:id' element={<Product />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/wishlist' element={<WishList />} />
