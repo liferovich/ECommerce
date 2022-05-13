@@ -16,6 +16,21 @@ class ProductController {
         }
     }
 
+    async getProductsByCategory(req: express.Request, res: express.Response) {
+        try {
+            const category = req.body.category;
+            const products = await productService.getProductsByCategory(category);
+
+            return res.json({ products });
+        } catch (err: any) {
+            if (err.status) {
+                res.status(err.status).json({ error: { message: err.message } });
+            } else {
+                res.status(500).json({ error: { message: 'Server error..' } });
+            }
+        }
+    }
+
     async addProduct(req: express.Request, res: express.Response) {
         try {
             const product = req.body;

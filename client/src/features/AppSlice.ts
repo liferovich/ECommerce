@@ -12,11 +12,11 @@ const initialState = {
 
 export const getProducts = createAsyncThunk(
   'app/getproducts',
-  async (_,
+  async (category: string,
     { rejectWithValue }) => {
     setLoading(true);
     try {
-      const response = await ProductService.getProducts();
+      const response = await ProductService.getProducts(category);
 
       return response.data;
     } catch (err: any) {
@@ -33,32 +33,32 @@ const appSlice = createSlice({
   reducers: {
     addCart: (state, action) => {
       // console.log(action.payload);
-      const index = state.cart.findIndex(x => x.id === action.payload.id);
-      if (index === -1) {
+      const index = state.cart.findIndex(x => x.id == action.payload.id);
+      if (index == -1) {
         state.cart = [...state.cart, action.payload];
       } else {
         state.cart.splice(index, 1);
       }
     },
     deleteCart: (state, action) => {
-      const index = state.cart.findIndex(x => x.id === action.payload.id);
+      const index = state.cart.findIndex(x => x.id == action.payload.id);
       state.cart.splice(index, 1);
     },
     addWishList: (state, action) => {
       // console.log(action.payload);
-      const index = state.wishlist.findIndex(x => x.id === action.payload.id);
-      if (index === -1) {
+      const index = state.wishlist.findIndex(x => x.id == action.payload.id);
+      if (index == -1) {
         state.wishlist = [...state.wishlist, action.payload];
       } else {
         state.wishlist.splice(index, 1);
       }
     },
     deleteWishlist: (state, action) => {
-      const index = state.wishlist.findIndex(x => x.id === action.payload.id);
+      const index = state.wishlist.findIndex(x => x.id == action.payload.id);
       state.wishlist.splice(index, 1);
     },
     getProduct: (state, action) => {
-      state.product = state.products.find(x => x.id === action.payload) || {} as Product;
+      state.product = state.products.find(x => x.id == action.payload) || {} as Product;
     },
     setLoading: (state, action) => {
       state.isLoading = action.payload;
@@ -77,6 +77,7 @@ const appSlice = createSlice({
 export const { setLoading, getProduct, addCart, addWishList, deleteCart } = appSlice.actions;
 // export const chats = (state: any) => state.chats.chats;
 export const cartLength = (state: any) => state.app.cart.length;
+export const wishlistLength = (state: any) => state.app.wishlist.length;
 export const cart = (state: any) => state.app.cart;
 export const wishlist = (state: any) => state.app.wishlist;
 export const product = (state: any) => state.app.product;

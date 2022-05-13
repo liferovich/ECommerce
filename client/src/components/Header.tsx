@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux'
-import { cartLength } from '../features/AppSlice'
+import { cartLength, wishlistLength } from '../features/AppSlice'
 
 export const Header = () => {
     const productCartLength = useSelector(cartLength)
-
+    const productWishlistLength = useSelector(wishlistLength)
 
     return (
         <header>
@@ -56,6 +56,7 @@ export const Header = () => {
                             <div className="tt-obj tt-obj-cart js-dropdown-cart">
                                 <NavLink to="/wishlist" className="tt-obj__btn">
                                     <i className="tt-icon  icon-favorite"></i>
+                                    <div className="tt-obj__badge">{productWishlistLength}</div>
                                 </NavLink>
                                 <NavLink to="/cart" className="tt-obj__btn"><i
                                     className="icon-808584"></i>
@@ -119,68 +120,38 @@ export const Header = () => {
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="about.html">
-                                            <div className="electric-btn"><span className="text">About Us</span>
-                                                <div className="mask"><span>About Us</span></div>
-                                                <div className="mask"><span>About Us</span></div>
-                                                <div className="mask"><span>About Us</span></div>
-                                                <div className="mask"><span>About Us</span></div>
-                                                <div className="mask"><span>About Us</span></div>
-                                                <div className="mask"><span>About Us</span></div>
+                                        <li><NavLink to='/news'>
+                                            <div className="electric-btn"><span className="text">Новости и Акции</span>
+                                                <div className="mask"><span>Новости и Акции</span></div>
+                                                <div className="mask"><span>Новости и Акции</span></div>
+                                                <div className="mask"><span>Новости и Акции</span></div>
+                                                <div className="mask"><span>Новости и Акции</span></div>
+                                                <div className="mask"><span>Новости и Акции</span></div>
+                                                <div className="mask"><span>Новости и Акции</span></div>
                                             </div>
-                                        </a>
-                                            <ul>
-                                                <li><a href="testimonials.html">Testimonials</a></li>
-                                            </ul>
+                                        </NavLink>
                                         </li>
-                                        <li><a href="blog.html">
-                                            <div className="electric-btn"><span className="text">Blog</span>
-                                                <div className="mask"><span>Blog</span></div>
-                                                <div className="mask"><span>Blog</span></div>
-                                                <div className="mask"><span>Blog</span></div>
-                                                <div className="mask"><span>Blog</span></div>
-                                                <div className="mask"><span>Blog</span></div>
-                                                <div className="mask"><span>Blog</span></div>
+                                        <li><NavLink to='/about'>
+                                            <div className="electric-btn"><span className="text">О нас</span>
+                                                <div className="mask"><span>О нас</span></div>
+                                                <div className="mask"><span>О нас</span></div>
+                                                <div className="mask"><span>О нас</span></div>
+                                                <div className="mask"><span>О нас</span></div>
+                                                <div className="mask"><span>О нас</span></div>
+                                                <div className="mask"><span>О нас</span></div>
                                             </div>
-                                        </a>
-                                            <ul>
-                                                <li><a href="blog-item.html">Blog Item</a></li>
-                                            </ul>
+                                        </NavLink>
                                         </li>
-                                        <li><a href="shop.html">
-                                            <div className="electric-btn"><span className="text">Shop</span>
-                                                <div className="mask"><span>Shop</span></div>
-                                                <div className="mask"><span>Shop</span></div>
-                                                <div className="mask"><span>Shop</span></div>
-                                                <div className="mask"><span>Shop</span></div>
-                                                <div className="mask"><span>Shop</span></div>
-                                                <div className="mask"><span>Shop</span></div>
+                                        <li><NavLink to='/contacts'>
+                                            <div className="electric-btn"><span className="text">Контакты</span>
+                                                <div className="mask"><span>Контакты</span></div>
+                                                <div className="mask"><span>Контакты</span></div>
+                                                <div className="mask"><span>Контакты</span></div>
+                                                <div className="mask"><span>Контакты</span></div>
+                                                <div className="mask"><span>Контакты</span></div>
+                                                <div className="mask"><span>Контакты</span></div>
                                             </div>
-                                        </a>
-                                            <ul>
-                                                <li><a href="shop-item.html">Shop Item</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="faq.html">
-                                            <div className="electric-btn"><span className="text">FAQ</span>
-                                                <div className="mask"><span>FAQ</span></div>
-                                                <div className="mask"><span>FAQ</span></div>
-                                                <div className="mask"><span>FAQ</span></div>
-                                                <div className="mask"><span>FAQ</span></div>
-                                                <div className="mask"><span>FAQ</span></div>
-                                                <div className="mask"><span>FAQ</span></div>
-                                            </div>
-                                        </a></li>
-                                        <li><a href="contact.html">
-                                            <div className="electric-btn"><span className="text">Contacts</span>
-                                                <div className="mask"><span>Contacts</span></div>
-                                                <div className="mask"><span>Contacts</span></div>
-                                                <div className="mask"><span>Contacts</span></div>
-                                                <div className="mask"><span>Contacts</span></div>
-                                                <div className="mask"><span>Contacts</span></div>
-                                                <div className="mask"><span>Contacts</span></div>
-                                            </div>
-                                        </a></li>
+                                        </NavLink></li>
                                     </ul>
                                 </nav>
                             </div>

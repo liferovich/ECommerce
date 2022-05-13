@@ -4,23 +4,12 @@ import { NavLink } from 'react-router-dom'
 import ProductItem from '../../components/ProductItem'
 import { products, getProducts } from '../../features/AppSlice'
 
-const CategoryNeon = () => {
+const CategoryString = () => {
   const dispatch = useDispatch()
   const appProducts = useSelector(products)
 
-  const sortByNew = () => {
-    appProducts.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
-  }
-
-  const sortByPriceUp = () => {
-    appProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-  }
-  const sortByPriceDown = () => {
-    appProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-  }
-
   useEffect(() => {
-    dispatch(getProducts('Гибкий неон'))
+    dispatch(getProducts("Табло бегущая строка"))
   }, [dispatch])
 
   return (
@@ -34,7 +23,7 @@ const CategoryNeon = () => {
             <li>
               <NavLink to='/catalog'>Каталог</NavLink>
             </li>
-            <li>Гибкий неон</li>
+            <li>Табло бегущая строка</li>
           </ul>
         </div>
       </div>
@@ -68,19 +57,65 @@ const CategoryNeon = () => {
                 </div>
               </div>
               <div className='tt-block-aside tt-block-aside__shadow'>
-                <h3 className='tt-aside-title'>Мощность</h3>
+                <h3 className='tt-aside-title'>Price</h3>
                 <div className='tt-aside-content'>
-                  <div className='custom-checkbox'>
-                    <label className='container-check'>
-                      8 Вт/м
-                      <input type='checkbox' />
-                      <span className='checkmark'></span>
-                    </label>
-                    <label className='container-check'>
-                      12 Вт/м
-                      <input type='checkbox' />
-                      <span className='checkmark'></span>
-                    </label>
+                  <div className='tt-slider-price'>
+                    <div id='slider-snap'></div>
+                    <div className='slider-value-row'>
+                      <div className='tt-title'>Price:</div>$
+                      <div
+                        id='slider-snap-value-lower'
+                        className='slider-value'
+                      ></div>
+                      $
+                      <div
+                        id='slider-snap-value-upper'
+                        className='slider-value'
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='tt-block-aside tt-block-aside__shadow'>
+                <h3 className='tt-aside-title'>Popular</h3>
+                <div className='tt-aside-content'>
+                  <div className='tt-popular'>
+                    <div className='tt-item'>
+                      <div className='tt-item__img'>
+                        <img src='images/product/product-01.jpg' alt='' />
+                      </div>
+                      <div className='tt-item__layout'>
+                        <div className='tt-title'>
+                          <a href='#'>
+                            Woods WiOn 15 amps Receptacle and USB Charger
+                          </a>
+                        </div>
+                        <div className='tt-value'>
+                          <a href='#' className='tt-icon-btn'>
+                            <i className='icon-808584'></i>
+                          </a>
+                          <div className='tt-price'>$41.99</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='tt-item'>
+                      <div className='tt-item__img'>
+                        <img src='images/product/product-02.jpg' alt='' />
+                      </div>
+                      <div className='tt-item__layout'>
+                        <div className='tt-title'>
+                          <a href='#'>
+                            Powerboss 3500 watts Gasoline Portable Generator
+                          </a>
+                        </div>
+                        <div className='tt-value'>
+                          <a href='#' className='tt-icon-btn'>
+                            <i className='icon-808584'></i>
+                          </a>
+                          <div className='tt-price'>$329.99</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -97,15 +132,13 @@ const CategoryNeon = () => {
                       className='tt-filters-toggle icon-icon-filter'
                       id='js-filters-toggle'
                     ></div>
-                    <div className='tt-title'>
-                      {appProducts.length} результат(ов)
-                    </div>
+                    <div className='tt-title'>Showing 1–9 of 18 results</div>
                     <div className='tt-filters-select'>
                       <div className='custom-select'>
                         <select>
-                          <option onClick={sortByNew}>Новинки</option>
-                          <option onClick={sortByPriceUp}>По цене ↑</option>
-                          <option onClick={sortByPriceDown}>По цене ↓</option>
+                          <option>Default Sorting</option>
+                          <option>Default Sorting 02</option>
+                          <option>Default Sorting 03</option>
                         </select>
                       </div>
                     </div>
@@ -125,4 +158,4 @@ const CategoryNeon = () => {
   )
 }
 
-export default CategoryNeon
+export default CategoryString

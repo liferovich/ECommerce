@@ -35,20 +35,16 @@ const Product = () => {
   }
 
   useEffect(() => {
-    dispatch(getProducts())
-  }, [dispatch])
-
-  useEffect(() => {
     dispatch(getProduct(id))
   }, [id])
 
   useEffect(() => {
-    const index = appCart.findIndex(x => x.id == product.id)
+    const index = appCart.findIndex(x => x.id == id)
     if (index !== -1) setIsInCart(true)
   }, [appCart])
 
   useEffect(() => {
-    const index = appWishlist.findIndex(x => x.id == product.id)
+    const index = appWishlist.findIndex(x => x.id == id)
     if (index !== -1) setIsInFav(true)
   }, [appWishlist])
 

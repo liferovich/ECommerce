@@ -32,12 +32,9 @@ export const Footer = () => {
                                         <ul>
                                             <li><NavLink to='/'>Главная</NavLink></li>
                                             <li><NavLink to='/catalog'>Каталог</NavLink></li>
-                                            <li><a href="#">О нас</a></li>
-                                            <li><a href="#">Shop</a></li>
-                                            <li><a href="#">Services</a></li>
-                                            <li><a href="#">FAQ</a></li>
-                                            <li><a href="#">Prices</a></li>
-                                            <li><a href="#">Contacts</a></li>
+                                            <li><NavLink to='/news'>Новости и Акции</NavLink></li>
+                                            <li><NavLink to='/about'>О нас</NavLink></li>
+                                            <li><NavLink to='/contacts'>Контакты</NavLink></li>
                                         </ul>
                                     </nav>
                                 </div>

@@ -28,6 +28,20 @@ class ProductService {
         return products;
     }
 
+    async getProductsByCategory(category: string) {
+        let products = await sequelize.model('Product').findAll({
+            where: {
+                category
+            }
+        });
+
+        if (!products) {
+            products = [];
+        }
+
+        return products;
+    }
+
     async addProduct(product: ProductType) {
         const newProduct = await sequelize.model('Product').create(product);
 

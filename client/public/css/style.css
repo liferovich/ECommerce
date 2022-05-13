@@ -14185,6 +14185,9 @@ body.no-scroll {
     background-color: transparent;
     cursor: pointer;
 }
+.layout01-fluid .layout01__img{
+    background-image: url('../images/layout01-img04.jpg')
+}
 .tt-product .tt-btn-addtocart .tt-icon {
     color: #f47629;
     font-size: 14px;

@@ -9,6 +9,7 @@ const WishList = () => {
 
     return (
         <>
+
             <div className='tt-breadcrumb'>
                 <div className='container container-lg-fluid'>
                     <ul>
@@ -21,10 +22,13 @@ const WishList = () => {
             </div>
             <div className='section-indent'>
                 <div className='container container-lg-fluid'>
-                    {wishListProducts.map((product: Product) => <WishlistItem product={product} key={product.id} />)}
+                    {wishListProducts.length ? (
+                        wishListProducts.map((product: Product) => <WishlistItem product={product} key={product.id} />)
+                    ) : <p>Товаров в избранном нет</p>}
 
                 </div>
             </div>
+
         </>
     )
 }
