@@ -28,6 +28,16 @@ class ProductService {
         return products;
     }
 
+    async getProduct(id: number) {
+        let product = await sequelize.model('Product').findOne({
+            where: {
+                id
+            }
+        });
+
+        return product;
+    }
+
     async getProductsByCategory(category: string) {
         let products = await sequelize.model('Product').findAll({
             where: {

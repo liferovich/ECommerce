@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   product,
-  getProduct,
-  getProducts,
+  getProductById,
   addCart,
   addWishList,
   wishlist,
@@ -35,7 +34,7 @@ const Product = () => {
   }
 
   useEffect(() => {
-    dispatch(getProduct(id))
+    dispatch(getProductById(id))
   }, [id])
 
   useEffect(() => {

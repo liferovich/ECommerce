@@ -6,6 +6,7 @@ import ProductService from '../services/ProductService';
 
 const initialState = {
   products: [] as Product[],
+  fProducts: [] as Product[],
   wishlist: [] as Product[],
   product: {} as Product,
   cart: [] as Product[],
@@ -19,6 +20,23 @@ export const getProducts = createAsyncThunk(
     setLoading(true);
     try {
       const response = await ProductService.getProducts(category);
+
+      return response.data;
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+);
+
+export const getProductById = createAsyncThunk(
+  'app/getproduct',
+  async (id: number,
+    { rejectWithValue }) => {
+    setLoading(true);
+    try {
+      const response = await ProductService.getProduct(id);
 
       return response.data;
     } catch (err: any) {
@@ -77,6 +95,14 @@ const appSlice = createSlice({
     getProduct: (state, action) => {
       state.product = state.products.find(x => x.id == action.payload) || {} as Product;
     },
+    filterProducts: (state, action) => {
+      const selected = action.payload.filters;
+      if (!selected.length) {
+        state.fProducts = [];
+      } else {
+        state.fProducts = state.products.filter(x => selected.indexOf(String(x.force)) > -1);
+      }
+    },
     setLoading: (state, action) => {
       state.isLoading = action.payload;
     },
@@ -88,6 +114,13 @@ const appSlice = createSlice({
     builder.addCase(getProducts.rejected, (state, action) => {
       console.log(action.payload);
     });
+    builder.addCase(getProductById.fulfilled, (state, action) => {
+      console.log(action.payload)
+      state.product = { ...action.payload.product };
+    });
+    builder.addCase(getProductById.rejected, (state, action) => {
+      console.log(action.payload);
+    });
     builder.addCase(addOrder.fulfilled, (state, action) => {
       state.cart = [];
     });
@@ -97,13 +130,14 @@ const appSlice = createSlice({
   },
 });
 
-export const { setLoading, getProduct, addCart, addWishList, deleteCart } = appSlice.actions;
+export const { setLoading, getProduct, addCart, addWishList, deleteCart, filterProducts } = appSlice.actions;
 export const cartLength = (state: any) => state.app.cart.length;
 export const wishlistLength = (state: any) => state.app.wishlist.length;
 export const cart = (state: any) => state.app.cart;
 export const wishlist = (state: any) => state.app.wishlist;
 export const product = (state: any) => state.app.product;
 export const products = (state: any) => state.app.products;
+export const fProducts = (state: any) => state.app.fProducts;
 export const isLoading = (state: any) => state.chats.isLoading;
 export const orderCost = (state: any) => state.app.cart.reduce((previousValue: number, product: Product) => {
   return previousValue + product.price;

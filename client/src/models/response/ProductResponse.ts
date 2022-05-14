@@ -1,5 +1,9 @@
-export interface ProductResponse {
+export interface ProductsResponse {
     products: Product[]
+}
+
+export interface ProductResponse {
+    product: Product
 }
 
 export interface Product {
@@ -16,5 +20,6 @@ export interface Product {
     buhlength: number,
     volt: number,
     size: string,
-    weight: number
+    weight: number,
+    createdAt: Date
 }

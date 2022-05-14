@@ -1,22 +1,46 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import ProductItem from '../../components/ProductItem'
-import { products, getProducts } from '../../features/AppSlice'
+import {
+  products,
+  getProducts,
+  filterProducts,
+  fProducts
+} from '../../features/AppSlice'
 
 const CategoryNeon = () => {
+  const [filter, setFilter] = useState([])
   const dispatch = useDispatch()
   const appProducts = useSelector(products)
+  const appFProducts = useSelector(fProducts)
 
   const sortByNew = () => {
-    appProducts.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
+    appProducts.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
   }
 
   const sortByPriceUp = () => {
-    appProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+    appProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
   }
   const sortByPriceDown = () => {
-    appProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+    appProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price))
+  }
+
+  const filterAllProducts = (filters) => {
+    console.log(filters)
+    dispatch(filterProducts({filters}))
+  }
+
+  const changeFilter = e => {
+    const index = filter.indexOf(e.target.value)
+    console.log(e.target.value)
+    if (index == -1) {
+      setFilter([...filter, e.target.value])
+      filterAllProducts([...filter, e.target.value])
+    } else {
+      setFilter([...filter.filter(f => f != e.target.value)])
+      filterAllProducts([...filter.filter(f => f != e.target.value)])
+    }
   }
 
   useEffect(() => {
@@ -73,12 +97,24 @@ const CategoryNeon = () => {
                   <div className='custom-checkbox'>
                     <label className='container-check'>
                       8 Вт/м
-                      <input type='checkbox' />
+                      <input
+                        type='checkbox'
+                        value='8'
+                        name='filter'
+                        checked={filter.indexOf('8') == -1 ? false : true}
+                        onChange={changeFilter}
+                      />
                       <span className='checkmark'></span>
                     </label>
                     <label className='container-check'>
                       12 Вт/м
-                      <input type='checkbox' />
+                      <input
+                        type='checkbox'
+                        value='12'
+                        name='filter'
+                        checked={filter.indexOf('12') == -1 ? false : true}
+                        onChange={changeFilter}
+                      />
                       <span className='checkmark'></span>
                     </label>
                   </div>
@@ -113,9 +149,13 @@ const CategoryNeon = () => {
                 </div>
               </div>
               <div id='tt-product-listing' className='tt-product-listing row'>
-                {appProducts.map(product => (
-                  <ProductItem product={product} key={product.id} />
-                ))}
+                {appFProducts.length
+                  ? appFProducts.map(product => (
+                      <ProductItem product={product} key={product.id} />
+                    ))
+                  : appProducts.map(product => (
+                      <ProductItem product={product} key={product.id} />
+                    ))}
               </div>
             </div>
           </div>
